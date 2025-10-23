@@ -1,6 +1,6 @@
 import Mailgen from "mailgen";
 import nodemailer from "nodemailer";
-
+import dotenv from "dotenv";
 /** 
 const sendEmail = async (options) => { 
     const mailGenerator =new Mailgen({
@@ -58,8 +58,8 @@ const sendEmail = async (options) => {
         host: process.env.MAILTRAP_SMTP_HOST,
         port: process.env.MAILTRAP_SMTP_PORT,
         auth: {
-            user: process.env.MAILTRAP_SMTP_EMAIL,
-            pass: process.env.MAILTRAP_SMTP_PASSWORD
+            user: process.env.MAILTRAP_SMTP_USER,
+            pass: process.env.MAILTRAP_SMTP_PASS
         }
     })
 
