@@ -13,15 +13,15 @@ router.route("/register").post(userRegisterValidator(), registerUser)
 router.route("/login").post(userLoginValidator(), login)
 router.route("/verify-email/:verificationToken").get( verifyEmail)
 router.route("/refresh-token").post(refreshAccessToken)
-router.route("/forgot-password").post(userForgotPasswordValidator(), validate, forgotPassword)
-router.route("/reset-password/:resetToken").post(userResetForgotPasswordValidator(), validate, resetForgotPassword)
+router.route("/forgot-password").post(userForgotPasswordValidator(),  forgotPassword)
+router.route("/reset-password/:resetToken").post(userResetForgotPasswordValidator(),  resetForgotPassword)
 
 
 // secured route
 router.route("/logout").post(verifyJWT, logoutUser)
 router.route("/get-current-user").post(verifyJWT, getCurrentUser)
 router.route("/resend-email-verification").post(verifyJWT, resendEmailVerification)
-router.route("/change-password").post(verifyJWT, userForgotPasswordValidator(), validate, changeCurrentPassword)
+router.route("/change-password").post(verifyJWT, userForgotPasswordValidator(), changeCurrentPassword)
 
 
 
