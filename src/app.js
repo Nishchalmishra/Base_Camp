@@ -21,8 +21,11 @@ app.use(
 import healthcheckerRouter from "./routes/healthchecker.routes.js"
 import authRouter from "./routes/auth.routes.js"
 
+import mailtestRouter from "./routes/mailtest.routes.js"
+
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/healthcheck", healthcheckerRouter)
+app.use("/api/v1/mailtest", healthcheckerRouter)
 
 
 app.get("/", (req, res) => {

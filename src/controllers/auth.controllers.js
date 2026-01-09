@@ -4,6 +4,7 @@ import ApiResponse from "../utils/api-response.js";
 import ApiError from "../utils/api-error.js";
 import { sendEmail, emailVerificationMailgenContent } from "../utils/mail.js  "
 import jwt from "jsonwebtoken"
+import crypto from "node:crypto";
 
 const generateAccessAndRefreshToken = async (userId) => {
     try {
@@ -189,15 +190,23 @@ const verifyEmail = asyncHandler(async (req, res) => {
     // user.emailVerificationTokenExpiry = undefined
     // await user.save({ validateBeforeSave: false })
     
-    const { emailVerificationToken } = req.params
+    const { verificationToken } = req.params
+
+    console.log("PARAMS:", req.params);
+    console.log("QUERY:", req.query);
+    console.log("HEADERS:", req.headers.authorization);
+
     
-    if(!emailVerificationToken) {
+    if(!verificationToken) {
         throw new ApiError(400, "Verification token is required")
     }
 
+
+
+
     let hashedToken = crypto
         .createHash("sha256")
-        .update(emailVerificationToken)
+        .update(verificationToken)
         .digest("hex")
     
     const user = await User.findOne({
